@@ -12,7 +12,7 @@ with open("requirements.txt") as f:
 
 setup(
     name="whitespacetokenizer",
-    version='1.0.0',
+    version='1.0.1',
     description='Fast python whitespace tokenizer wtitten in cython.',
     long_description_content_type="text/markdown",
     long_description=README,
@@ -20,7 +20,7 @@ setup(
     ext_modules=cythonize("whitespacetokenizer/*.pyx", language_level="3", language="c++"),
     packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     author='Martin Dočekal',
-    keywords=['torch'],
+    keywords=['tokenizer', 'whitespace'],
     url='https://github.com/mdocekal/whitespacetokenizer',
     python_requires='>=3.10',
     install_requires=REQUIREMENTS,
