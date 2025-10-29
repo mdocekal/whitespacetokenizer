@@ -1,1 +1,1 @@
-from whitespacetokenizer.tokenizer import whitespace_tokenizer
+from whitespacetokenizer.tokenizer import whitespace_tokenizer, WhitespaceTokenizer, word_tokenizer, WordTokenizer

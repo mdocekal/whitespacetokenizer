@@ -1,6 +1,5 @@
 import unittest
-from whitespacetokenizer import whitespace_tokenizer
-from whitespacetokenizer.tokenizer import WhitespaceTokenizer
+from whitespacetokenizer import whitespace_tokenizer, WhitespaceTokenizer, word_tokenizer, WordTokenizer
 
 
 class TestWhitespaceTokenizer(unittest.TestCase):
@@ -65,3 +64,38 @@ class TestWhitespaceTokenizerClass(unittest.TestCase):
             self.tokenizer("Hello, world! How are you?"),
             [(0, 0, 6), (1, 7, 13), (2, 14, 17), (3, 18, 21), (4, 22, 26)]
         )
+
+
+class TestWordTokenizer(unittest.TestCase):
+    def test_tokenize_empty(self):
+        self.assertEqual(word_tokenizer(""), [])
+
+    def test_tokenize_single(self):
+        self.assertEqual(word_tokenizer("hello"), [("hello", 0, 5)])
+
+    def test_tokenize_multiple(self):
+        self.assertEqual(word_tokenizer("hello world"), [("hello", 0, 5), ("world", 6, 11)])
+
+    def test_tokenize_punctuation(self):
+        self.assertEqual(word_tokenizer("hello, world!"), [("hello", 0, 5), (",", 5, 6), ("world", 7, 12), ("!", 12, 13)])
+
+    def test_tokenize_punctuation_only(self):
+        self.assertEqual(word_tokenizer("!!!"), [("!", 0, 1), ("!", 1, 2), ("!", 2, 3)])
+
+
+class TestWordTokenizerClass(unittest.TestCase):
+
+    def setUp(self):
+        self.tokenizer = WordTokenizer()
+
+    def test_tokenize_empty(self):
+        self.assertEqual(self.tokenizer(""), [])
+
+    def test_tokenize_single(self):
+        self.assertEqual(self.tokenizer("hello"), [(0, 0, 5)])
+
+    def test_tokenize_multiple(self):
+        self.assertEqual(self.tokenizer("hello world"), [(0, 0, 5), (1, 6, 11)])
+
+    def test_tokenize_punctuation(self):
+        self.assertEqual(self.tokenizer("hello, world!"), [(0, 0, 5), (1, 5, 6), (2, 7, 12), (3, 12, 13)])

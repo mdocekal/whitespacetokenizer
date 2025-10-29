@@ -12,7 +12,7 @@ with open("requirements.txt") as f:
 
 setup(
     name="whitespacetokenizer",
-    version='1.0.4',
+    version='1.0.5',
     description='Fast python whitespace tokenizer wtitten in cython.',
     long_description_content_type="text/markdown",
     long_description=README,
